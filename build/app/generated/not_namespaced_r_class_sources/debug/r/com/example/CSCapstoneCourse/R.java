@@ -421,7 +421,7 @@ public final class R {
      * <tr><th>Attribute</th><th>Description</th></tr>
      * <tr><td><code>{@link #ColorStateListItem_android_color android:color}</code></td><td></td></tr>
      * <tr><td><code>{@link #ColorStateListItem_android_alpha android:alpha}</code></td><td></td></tr>
-     * <tr><td><code>{@link #ColorStateListItem_alpha com.example.CSCapstoneCourse:alpha}</code></td><td>Alpha multiplier applied to the base color.</td></tr>
+     * <tr><td><code>{@link #ColorStateListItem_alpha com.sentiment.CSCapstoneCourse:alpha}</code></td><td>Alpha multiplier applied to the base color.</td></tr>
      * </table>
      * @see #ColorStateListItem_android_color
      * @see #ColorStateListItem_android_alpha
@@ -458,7 +458,7 @@ public final class R {
      *
      * <p>May be a floating point value, such as "<code>1.2</code>".
      *
-     * @attr name com.example.CSCapstoneCourse:alpha
+     * @attr name com.sentiment.CSCapstoneCourse:alpha
      */
     public static final int ColorStateListItem_alpha=2;
     /**
@@ -468,12 +468,12 @@ public final class R {
      * <colgroup align="left" />
      * <colgroup align="left" />
      * <tr><th>Attribute</th><th>Description</th></tr>
-     * <tr><td><code>{@link #FontFamily_fontProviderAuthority com.example.CSCapstoneCourse:fontProviderAuthority}</code></td><td>The authority of the Font Provider to be used for the request.</td></tr>
-     * <tr><td><code>{@link #FontFamily_fontProviderCerts com.example.CSCapstoneCourse:fontProviderCerts}</code></td><td>The sets of hashes for the certificates the provider should be signed with.</td></tr>
-     * <tr><td><code>{@link #FontFamily_fontProviderFetchStrategy com.example.CSCapstoneCourse:fontProviderFetchStrategy}</code></td><td>The strategy to be used when fetching font data from a font provider in XML layouts.</td></tr>
-     * <tr><td><code>{@link #FontFamily_fontProviderFetchTimeout com.example.CSCapstoneCourse:fontProviderFetchTimeout}</code></td><td>The length of the timeout during fetching.</td></tr>
-     * <tr><td><code>{@link #FontFamily_fontProviderPackage com.example.CSCapstoneCourse:fontProviderPackage}</code></td><td>The package for the Font Provider to be used for the request.</td></tr>
-     * <tr><td><code>{@link #FontFamily_fontProviderQuery com.example.CSCapstoneCourse:fontProviderQuery}</code></td><td>The query to be sent over to the provider.</td></tr>
+     * <tr><td><code>{@link #FontFamily_fontProviderAuthority com.sentiment.CSCapstoneCourse:fontProviderAuthority}</code></td><td>The authority of the Font Provider to be used for the request.</td></tr>
+     * <tr><td><code>{@link #FontFamily_fontProviderCerts com.sentiment.CSCapstoneCourse:fontProviderCerts}</code></td><td>The sets of hashes for the certificates the provider should be signed with.</td></tr>
+     * <tr><td><code>{@link #FontFamily_fontProviderFetchStrategy com.sentiment.CSCapstoneCourse:fontProviderFetchStrategy}</code></td><td>The strategy to be used when fetching font data from a font provider in XML layouts.</td></tr>
+     * <tr><td><code>{@link #FontFamily_fontProviderFetchTimeout com.sentiment.CSCapstoneCourse:fontProviderFetchTimeout}</code></td><td>The length of the timeout during fetching.</td></tr>
+     * <tr><td><code>{@link #FontFamily_fontProviderPackage com.sentiment.CSCapstoneCourse:fontProviderPackage}</code></td><td>The package for the Font Provider to be used for the request.</td></tr>
+     * <tr><td><code>{@link #FontFamily_fontProviderQuery com.sentiment.CSCapstoneCourse:fontProviderQuery}</code></td><td>The query to be sent over to the provider.</td></tr>
      * </table>
      * @see #FontFamily_fontProviderAuthority
      * @see #FontFamily_fontProviderCerts
@@ -494,7 +494,7 @@ public final class R {
      * <p>May be a string value, using '\\;' to escape characters such as
      * '\\n' or '\\uxxxx' for a unicode character;
      *
-     * @attr name com.example.CSCapstoneCourse:fontProviderAuthority
+     * @attr name com.sentiment.CSCapstoneCourse:fontProviderAuthority
      */
     public static final int FontFamily_fontProviderAuthority=0;
     /**
@@ -511,7 +511,7 @@ public final class R {
      * attribute in the form
      * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
      *
-     * @attr name com.example.CSCapstoneCourse:fontProviderCerts
+     * @attr name com.sentiment.CSCapstoneCourse:fontProviderCerts
      */
     public static final int FontFamily_fontProviderCerts=1;
     /**
@@ -543,7 +543,7 @@ public final class R {
      * default typeface will be used instead.</td></tr>
      * </table>
      *
-     * @attr name com.example.CSCapstoneCourse:fontProviderFetchStrategy
+     * @attr name com.sentiment.CSCapstoneCourse:fontProviderFetchStrategy
      */
     public static final int FontFamily_fontProviderFetchStrategy=2;
     /**
@@ -562,7 +562,7 @@ public final class R {
      * timeout and wait until a reply is received from the font provider.</td></tr>
      * </table>
      *
-     * @attr name com.example.CSCapstoneCourse:fontProviderFetchTimeout
+     * @attr name com.sentiment.CSCapstoneCourse:fontProviderFetchTimeout
      */
     public static final int FontFamily_fontProviderFetchTimeout=3;
     /**
@@ -574,7 +574,7 @@ public final class R {
      * <p>May be a string value, using '\\;' to escape characters such as
      * '\\n' or '\\uxxxx' for a unicode character;
      *
-     * @attr name com.example.CSCapstoneCourse:fontProviderPackage
+     * @attr name com.sentiment.CSCapstoneCourse:fontProviderPackage
      */
     public static final int FontFamily_fontProviderPackage=4;
     /**
@@ -586,7 +586,7 @@ public final class R {
      * <p>May be a string value, using '\\;' to escape characters such as
      * '\\n' or '\\uxxxx' for a unicode character;
      *
-     * @attr name com.example.CSCapstoneCourse:fontProviderQuery
+     * @attr name com.sentiment.CSCapstoneCourse:fontProviderQuery
      */
     public static final int FontFamily_fontProviderQuery=5;
     /**
@@ -601,11 +601,11 @@ public final class R {
      * <tr><td><code>{@link #FontFamilyFont_android_fontStyle android:fontStyle}</code></td><td></td></tr>
      * <tr><td><code>{@link #FontFamilyFont_android_ttcIndex android:ttcIndex}</code></td><td></td></tr>
      * <tr><td><code>{@link #FontFamilyFont_android_fontVariationSettings android:fontVariationSettings}</code></td><td></td></tr>
-     * <tr><td><code>{@link #FontFamilyFont_font com.example.CSCapstoneCourse:font}</code></td><td>The reference to the font file to be used.</td></tr>
-     * <tr><td><code>{@link #FontFamilyFont_fontStyle com.example.CSCapstoneCourse:fontStyle}</code></td><td>The style of the given font file.</td></tr>
-     * <tr><td><code>{@link #FontFamilyFont_fontVariationSettings com.example.CSCapstoneCourse:fontVariationSettings}</code></td><td>The variation settings to be applied to the font.</td></tr>
-     * <tr><td><code>{@link #FontFamilyFont_fontWeight com.example.CSCapstoneCourse:fontWeight}</code></td><td>The weight of the given font file.</td></tr>
-     * <tr><td><code>{@link #FontFamilyFont_ttcIndex com.example.CSCapstoneCourse:ttcIndex}</code></td><td>The index of the font in the tcc font file.</td></tr>
+     * <tr><td><code>{@link #FontFamilyFont_font com.sentiment.CSCapstoneCourse:font}</code></td><td>The reference to the font file to be used.</td></tr>
+     * <tr><td><code>{@link #FontFamilyFont_fontStyle com.sentiment.CSCapstoneCourse:fontStyle}</code></td><td>The style of the given font file.</td></tr>
+     * <tr><td><code>{@link #FontFamilyFont_fontVariationSettings com.sentiment.CSCapstoneCourse:fontVariationSettings}</code></td><td>The variation settings to be applied to the font.</td></tr>
+     * <tr><td><code>{@link #FontFamilyFont_fontWeight com.sentiment.CSCapstoneCourse:fontWeight}</code></td><td>The weight of the given font file.</td></tr>
+     * <tr><td><code>{@link #FontFamilyFont_ttcIndex com.sentiment.CSCapstoneCourse:ttcIndex}</code></td><td>The index of the font in the tcc font file.</td></tr>
      * </table>
      * @see #FontFamilyFont_android_font
      * @see #FontFamilyFont_android_fontWeight
@@ -692,7 +692,7 @@ public final class R {
      * attribute in the form
      * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
      *
-     * @attr name com.example.CSCapstoneCourse:font
+     * @attr name com.sentiment.CSCapstoneCourse:font
      */
     public static final int FontFamilyFont_font=5;
     /**
@@ -712,7 +712,7 @@ public final class R {
      * <tr><td>normal</td><td>0</td><td></td></tr>
      * </table>
      *
-     * @attr name com.example.CSCapstoneCourse:fontStyle
+     * @attr name com.sentiment.CSCapstoneCourse:fontStyle
      */
     public static final int FontFamilyFont_fontStyle=6;
     /**
@@ -726,7 +726,7 @@ public final class R {
      * <p>May be a string value, using '\\;' to escape characters such as
      * '\\n' or '\\uxxxx' for a unicode character;
      *
-     * @attr name com.example.CSCapstoneCourse:fontVariationSettings
+     * @attr name com.sentiment.CSCapstoneCourse:fontVariationSettings
      */
     public static final int FontFamilyFont_fontVariationSettings=7;
     /**
@@ -740,7 +740,7 @@ public final class R {
      *
      * <p>May be an integer value, such as "<code>100</code>".
      *
-     * @attr name com.example.CSCapstoneCourse:fontWeight
+     * @attr name com.sentiment.CSCapstoneCourse:fontWeight
      */
     public static final int FontFamilyFont_fontWeight=8;
     /**
@@ -751,7 +751,7 @@ public final class R {
      *
      * <p>May be an integer value, such as "<code>100</code>".
      *
-     * @attr name com.example.CSCapstoneCourse:ttcIndex
+     * @attr name com.sentiment.CSCapstoneCourse:ttcIndex
      */
     public static final int FontFamilyFont_ttcIndex=9;
     /**
@@ -1004,9 +1004,9 @@ public final class R {
      * <colgroup align="left" />
      * <colgroup align="left" />
      * <tr><th>Attribute</th><th>Description</th></tr>
-     * <tr><td><code>{@link #LoadingImageView_circleCrop com.example.CSCapstoneCourse:circleCrop}</code></td><td></td></tr>
-     * <tr><td><code>{@link #LoadingImageView_imageAspectRatio com.example.CSCapstoneCourse:imageAspectRatio}</code></td><td></td></tr>
-     * <tr><td><code>{@link #LoadingImageView_imageAspectRatioAdjust com.example.CSCapstoneCourse:imageAspectRatioAdjust}</code></td><td></td></tr>
+     * <tr><td><code>{@link #LoadingImageView_circleCrop com.sentiment.CSCapstoneCourse:circleCrop}</code></td><td></td></tr>
+     * <tr><td><code>{@link #LoadingImageView_imageAspectRatio com.sentiment.CSCapstoneCourse:imageAspectRatio}</code></td><td></td></tr>
+     * <tr><td><code>{@link #LoadingImageView_imageAspectRatioAdjust com.sentiment.CSCapstoneCourse:imageAspectRatioAdjust}</code></td><td></td></tr>
      * </table>
      * @see #LoadingImageView_circleCrop
      * @see #LoadingImageView_imageAspectRatio
@@ -1016,26 +1016,26 @@ public final class R {
       0x7f010002, 0x7f01000e, 0x7f01000f
     };
     /**
-     * <p>This symbol is the offset where the {@link com.example.CSCapstoneCourse.R.attr#circleCrop}
+     * <p>This symbol is the offset where the {@link com.sentiment.CSCapstoneCourse.R.attr#circleCrop}
      * attribute's value can be found in the {@link #LoadingImageView} array.
      *
      * <p>May be a boolean value, such as "<code>true</code>" or
      * "<code>false</code>".
      *
-     * @attr name com.example.CSCapstoneCourse:circleCrop
+     * @attr name com.sentiment.CSCapstoneCourse:circleCrop
      */
     public static final int LoadingImageView_circleCrop=0;
     /**
-     * <p>This symbol is the offset where the {@link com.example.CSCapstoneCourse.R.attr#imageAspectRatio}
+     * <p>This symbol is the offset where the {@link com.sentiment.CSCapstoneCourse.R.attr#imageAspectRatio}
      * attribute's value can be found in the {@link #LoadingImageView} array.
      *
      * <p>May be a floating point value, such as "<code>1.2</code>".
      *
-     * @attr name com.example.CSCapstoneCourse:imageAspectRatio
+     * @attr name com.sentiment.CSCapstoneCourse:imageAspectRatio
      */
     public static final int LoadingImageView_imageAspectRatio=1;
     /**
-     * <p>This symbol is the offset where the {@link com.example.CSCapstoneCourse.R.attr#imageAspectRatioAdjust}
+     * <p>This symbol is the offset where the {@link com.sentiment.CSCapstoneCourse.R.attr#imageAspectRatioAdjust}
      * attribute's value can be found in the {@link #LoadingImageView} array.
      *
      * <p>Must be one of the following constant values.</p>
@@ -1049,7 +1049,7 @@ public final class R {
      * <tr><td>none</td><td>0</td><td></td></tr>
      * </table>
      *
-     * @attr name com.example.CSCapstoneCourse:imageAspectRatioAdjust
+     * @attr name com.sentiment.CSCapstoneCourse:imageAspectRatioAdjust
      */
     public static final int LoadingImageView_imageAspectRatioAdjust=2;
     /**
@@ -1059,9 +1059,9 @@ public final class R {
      * <colgroup align="left" />
      * <colgroup align="left" />
      * <tr><th>Attribute</th><th>Description</th></tr>
-     * <tr><td><code>{@link #SignInButton_buttonSize com.example.CSCapstoneCourse:buttonSize}</code></td><td></td></tr>
-     * <tr><td><code>{@link #SignInButton_colorScheme com.example.CSCapstoneCourse:colorScheme}</code></td><td></td></tr>
-     * <tr><td><code>{@link #SignInButton_scopeUris com.example.CSCapstoneCourse:scopeUris}</code></td><td></td></tr>
+     * <tr><td><code>{@link #SignInButton_buttonSize com.sentiment.CSCapstoneCourse:buttonSize}</code></td><td></td></tr>
+     * <tr><td><code>{@link #SignInButton_colorScheme com.sentiment.CSCapstoneCourse:colorScheme}</code></td><td></td></tr>
+     * <tr><td><code>{@link #SignInButton_scopeUris com.sentiment.CSCapstoneCourse:scopeUris}</code></td><td></td></tr>
      * </table>
      * @see #SignInButton_buttonSize
      * @see #SignInButton_colorScheme
@@ -1071,7 +1071,7 @@ public final class R {
       0x7f010001, 0x7f010003, 0x7f010010
     };
     /**
-     * <p>This symbol is the offset where the {@link com.example.CSCapstoneCourse.R.attr#buttonSize}
+     * <p>This symbol is the offset where the {@link com.sentiment.CSCapstoneCourse.R.attr#buttonSize}
      * attribute's value can be found in the {@link #SignInButton} array.
      *
      * <p>May be a reference to another resource, in the form
@@ -1089,11 +1089,11 @@ public final class R {
      * <tr><td>wide</td><td>1</td><td></td></tr>
      * </table>
      *
-     * @attr name com.example.CSCapstoneCourse:buttonSize
+     * @attr name com.sentiment.CSCapstoneCourse:buttonSize
      */
     public static final int SignInButton_buttonSize=0;
     /**
-     * <p>This symbol is the offset where the {@link com.example.CSCapstoneCourse.R.attr#colorScheme}
+     * <p>This symbol is the offset where the {@link com.sentiment.CSCapstoneCourse.R.attr#colorScheme}
      * attribute's value can be found in the {@link #SignInButton} array.
      *
      * <p>May be a reference to another resource, in the form
@@ -1111,11 +1111,11 @@ public final class R {
      * <tr><td>light</td><td>1</td><td></td></tr>
      * </table>
      *
-     * @attr name com.example.CSCapstoneCourse:colorScheme
+     * @attr name com.sentiment.CSCapstoneCourse:colorScheme
      */
     public static final int SignInButton_colorScheme=1;
     /**
-     * <p>This symbol is the offset where the {@link com.example.CSCapstoneCourse.R.attr#scopeUris}
+     * <p>This symbol is the offset where the {@link com.sentiment.CSCapstoneCourse.R.attr#scopeUris}
      * attribute's value can be found in the {@link #SignInButton} array.
      *
      * <p>May be a reference to another resource, in the form
@@ -1125,7 +1125,7 @@ public final class R {
      * <p>May be a string value, using '\\;' to escape characters such as
      * '\\n' or '\\uxxxx' for a unicode character;
      *
-     * @attr name com.example.CSCapstoneCourse:scopeUris
+     * @attr name com.sentiment.CSCapstoneCourse:scopeUris
      */
     public static final int SignInButton_scopeUris=2;
   }

@@ -1,4 +1,4 @@
-com.example.CSCapstoneCourse
+com.sentiment.CSCapstoneCourse
 attr alpha
 attr buttonSize
 attr circleCrop

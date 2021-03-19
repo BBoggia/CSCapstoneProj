@@ -3,7 +3,7 @@
     <string name="default_web_client_id" translatable="false">1042687687567-qrjfkd48qsuvqb0nrkqa46b9g7pbv7en.apps.googleusercontent.com</string>
     <string name="gcm_defaultSenderId" translatable="false">1042687687567</string>
     <string name="google_api_key" translatable="false">AIzaSyDeHvME4sWttji5_cwv9wKovCrNJDZj5zw</string>
-    <string name="google_app_id" translatable="false">1:1042687687567:android:4bd2cfa00b68643a6ba9fa</string>
+    <string name="google_app_id" translatable="false">1:1042687687567:android:1f5491235fd1d8c96ba9fa</string>
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDeHvME4sWttji5_cwv9wKovCrNJDZj5zw</string>
     <string name="google_storage_bucket" translatable="false">sentiment-eb87a.appspot.com</string>
     <string name="project_id" translatable="false">sentiment-eb87a</string>

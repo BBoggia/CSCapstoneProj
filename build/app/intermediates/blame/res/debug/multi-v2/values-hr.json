@@ -4,7 +4,24 @@
             "outputFile": "C:\\CSCapstoneProj\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hr\\values-hr.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Lorenzo Toscano\\.gradle\\caches\\transforms-2\\files-2.1\\6eb14f512292913515d869914807ad40\\play-services-base-17.1.0\\res\\values-hr\\values.xml",
+                    "source": "C:\\Users\\Lorenzo Toscano\\.gradle\\caches\\transforms-2\\files-2.1\\3e26ef26d15f163a2f1a31a2130a0254\\core-1.1.0\\res\\values-hr\\values-hr.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "2781",
+                        "endColumns": "100",
+                        "endOffsets": "2877"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Lorenzo Toscano\\.gradle\\caches\\transforms-2\\files-2.1\\97461efba6c5e9e0983cc52e8129f2d5\\play-services-base-17.1.0\\res\\values-hr\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -21,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Lorenzo Toscano\\.gradle\\caches\\transforms-2\\files-2.1\\615e770ceb3bb9dd5cec508433081cb5\\jetified-play-services-basement-17.1.0\\res\\values-hr\\values.xml",
+                    "source": "C:\\Users\\Lorenzo Toscano\\.gradle\\caches\\transforms-2\\files-2.1\\5603fefa4e2f6be3020973eaef807f13\\jetified-play-services-basement-17.1.0\\res\\values-hr\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -35,23 +52,6 @@
                         "startOffsets": "1275",
                         "endColumns": "190",
                         "endOffsets": "1461"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Lorenzo Toscano\\.gradle\\caches\\transforms-2\\files-2.1\\3aaf6e5219b7f981ec263df919098c6f\\core-1.1.0\\res\\values-hr\\values-hr.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "20",
-                        "startColumns": "4",
-                        "startOffsets": "2781",
-                        "endColumns": "100",
-                        "endOffsets": "2877"
                     }
                 }
             ]

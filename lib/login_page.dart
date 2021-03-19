@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
         title: Text("Login Page"),
       ),
       body: Center(
-        child: RaisedButton(
+        child: ElevatedButton(
           onPressed: signInWithGoogle,
           child: Text("Login With Google"),
         ),

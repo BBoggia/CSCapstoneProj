@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 //local files
@@ -15,10 +16,21 @@ class HomePage extends StatelessWidget {
         title: Text("Home Page"),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: signOut,
-          child: Text("Log out"),
-        ),
+        child: new Column(children: [
+          SizedBox(
+            height: 30,
+          ),
+          Authentication().getProfileImage(),
+          Text('Hello, '),
+          Authentication().getProfileName(),
+          SizedBox(
+            height: 30,
+          ),
+          ElevatedButton(
+            onPressed: signOut,
+            child: Text("Log out"),
+          ),
+        ]),
       ),
     );
   }

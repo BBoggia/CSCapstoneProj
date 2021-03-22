@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'authentication.dart';
 
 class LoginPage extends StatelessWidget {
@@ -14,10 +14,16 @@ class LoginPage extends StatelessWidget {
         title: Text("Login Page"),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: signInWithGoogle,
-          child: Text("Login With Google"),
-        ),
+        child: Column(children: [
+          Text("Sentiment Analisys Application Logo Goes Here"),
+          SizedBox(
+            height: 200,
+          ),
+          SignInButton(
+            Buttons.GoogleDark,
+            onPressed: signInWithGoogle,
+          ),
+        ]),
       ),
     );
   }

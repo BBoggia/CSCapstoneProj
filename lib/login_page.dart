@@ -15,7 +15,15 @@ class LoginPage extends StatelessWidget {
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/journal.png'),
+          Text(
+            'Mental Health Journal',
+            style: TextStyle(height: 5, fontSize: 25),
+          ),
+          Image.asset(
+            'assets/journal.png',
+            height: 150,
+            width: 150,
+          ),
           SignInButton(
             Buttons.GoogleDark,
             onPressed: signInWithGoogle,

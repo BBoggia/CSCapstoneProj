@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:CSCapstoneCourse/user_home.dart';
 
 //local files
 import 'authentication.dart';
@@ -30,6 +31,14 @@ class HomePage extends StatelessWidget {
             onPressed: signOut,
             child: Text("Log out"),
           ),
+          ElevatedButton(
+              child: Text("User Main Page"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => UserMainPage()),
+                );
+              })
         ]),
       ),
     );

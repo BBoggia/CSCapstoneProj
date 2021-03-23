@@ -10,21 +10,18 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Login Page"),
-      ),
-      body: Center(
-        child: Column(children: [
-          Text("Sentiment Analisys Application Logo Goes Here"),
-          SizedBox(
-            height: 200,
-          ),
+        body: Center(
+            child: Stack(alignment: Alignment.center, children: <Widget>[
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset('assets/journal.jpeg'),
           SignInButton(
             Buttons.GoogleDark,
             onPressed: signInWithGoogle,
           ),
-        ]),
-      ),
-    );
+        ],
+      )
+    ])));
   }
 }

@@ -7,42 +7,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1042687687567:android:4bd2cfa00b68643a6ba9fa",
-        "android_client_info": {
-          "package_name": "com.example.CSCapstoneCourse"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1042687687567-qrjfkd48qsuvqb0nrkqa46b9g7pbv7en.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDeHvME4sWttji5_cwv9wKovCrNJDZj5zw"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1042687687567-qrjfkd48qsuvqb0nrkqa46b9g7pbv7en.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "1042687687567-op8vv15og7fd911jm3c1nnlih77bncch.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.CSCapstoneCourse"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:1042687687567:android:1f5491235fd1d8c96ba9fa",
         "android_client_info": {
           "package_name": "com.sentiment.CSCapstoneCourse"

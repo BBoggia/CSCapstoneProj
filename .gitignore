@@ -8,3 +8,4 @@
 .pub-cache/
 .pub/
 /build/
+/ios/.DS_Store

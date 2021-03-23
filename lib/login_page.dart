@@ -25,24 +25,3 @@ class LoginPage extends StatelessWidget {
     ])));
   }
 }
-
-/*
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(children: [
-          Text("Sentiment Analysis Application Logo Goes Here"),
-          SizedBox(
-            height: 200,
-          ),
-          SignInButton(
-            Buttons.GoogleDark,
-            onPressed: signInWithGoogle,
-          ),
-        ]),
-      ),
-    );
-  }
-}
-*/

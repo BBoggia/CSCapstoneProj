@@ -40,6 +40,50 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042687687567:android:1f5491235fd1d8c96ba9fa",
+        "android_client_info": {
+          "package_name": "com.sentiment.CSCapstoneCourse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042687687567-tfl0f12ksocie20c5d3jgm20ei1ilbtn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sentiment.CSCapstoneCourse",
+            "certificate_hash": "66cfba0e5ab8424d8e7accd3d276fa45b2e3d93d"
+          }
+        },
+        {
+          "client_id": "1042687687567-qrjfkd48qsuvqb0nrkqa46b9g7pbv7en.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeHvME4sWttji5_cwv9wKovCrNJDZj5zw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042687687567-qrjfkd48qsuvqb0nrkqa46b9g7pbv7en.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1042687687567-op8vv15og7fd911jm3c1nnlih77bncch.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.CSCapstoneCourse"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

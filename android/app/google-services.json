@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1042687687567-h1dl0sodqh2m34p2teju9qj7ncrgq00h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sentiment.CSCapstoneCourse",
+            "certificate_hash": "7b06eac06b1787ee6dfb218710a18293602b81a6"
+          }
+        },
+        {
           "client_id": "1042687687567-tfl0f12ksocie20c5d3jgm20ei1ilbtn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

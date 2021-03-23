@@ -15,7 +15,7 @@ class LoginPage extends StatelessWidget {
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/journal.jpeg'),
+          Image.asset('assets/journal.png'),
           SignInButton(
             Buttons.GoogleDark,
             onPressed: signInWithGoogle,

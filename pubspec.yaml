@@ -31,6 +31,7 @@ dependencies:
   flutter_signin_button: ^1.1.0
   sentiment_dart: ^0.0.4
   speech_to_text: ^3.2.0
+  intl: ^0.16.1
 
 
   # The following adds the Cupertino Icons font to your application.

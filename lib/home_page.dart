@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:CSCapstoneCourse/user_home.dart';
+import 'package:CSCapstoneCourse/sentiment_test.dart';
 
 //local files
 import 'authentication.dart';
@@ -31,13 +32,21 @@ class HomePage extends StatelessWidget {
             child: Text("Log out"),
           ),
           ElevatedButton(
+              child: Text("User Sentiment Page"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => UserSentimentPage()),
+                );
+              }),
+          ElevatedButton(
               child: Text("User Main Page"),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => UserMainPage()),
                 );
-              })
+              }),
         ]),
       ),
     );

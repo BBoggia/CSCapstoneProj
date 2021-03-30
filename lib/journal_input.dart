@@ -51,6 +51,8 @@ class _SpeechScreenState extends State<JournalEntry> {
         child: Container(
           padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 150.0),
           child: TextField(
+            minLines: 8,
+            maxLines: 200,
             controller: txt,
           ),
         ),

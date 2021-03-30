@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:sentiment_dart/sentiment_dart.dart';
 
 class Today {
   DateTime now;
@@ -35,6 +36,8 @@ class _SpeechScreenState extends State<JournalEntry> {
     _speech = stt.SpeechToText();
   }
 
+  final sentiment = Sentiment();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +64,9 @@ class _SpeechScreenState extends State<JournalEntry> {
             child: Text("clear"),
             onPressed: () => {txt.clear()},
           ),
+          ElevatedButton(
+              onPressed: () => {print(sentiment.analysis(txt.text))},
+              child: Text("Get Score"))
         ]),
       ),
     );

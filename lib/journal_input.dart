@@ -48,19 +48,26 @@ class _SpeechScreenState extends State<JournalEntry> {
           child: Icon(_isListening ? Icons.mic : Icons.mic_none)),
       body: SingleChildScrollView(
         reverse: true,
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 150.0),
-          child: TextField(
-            minLines: 8,
-            maxLines: 200,
-            controller: txt,
+        child: Column(children: [
+          Container(
+            padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 150.0),
+            child: TextField(
+              minLines: 8,
+              maxLines: 200,
+              controller: txt,
+            ),
           ),
-        ),
+          ElevatedButton(
+            child: Text("clear"),
+            onPressed: () => {txt.clear()},
+          ),
+        ]),
       ),
     );
   }
 
   void _listen() async {
+    String tmpTxt = txt.text;
     if (!_isListening) {
       bool avaliable = await _speech.initialize(
         onStatus: (val) => print('onStatus: $val'),
@@ -70,8 +77,9 @@ class _SpeechScreenState extends State<JournalEntry> {
         setState(() => _isListening = true);
         _speech.listen(
           onResult: (val) => setState(() {
-            txt.text = val.recognizedWords;
-            print(val.recognizedWords);
+            print(tmpTxt);
+            txt.text = tmpTxt + ' ' + val.recognizedWords + ' ';
+            // print(val.recognizedWords);
             if (val.hasConfidenceRating && val.confidence > 0) {
               _confidence = val.confidence;
             }

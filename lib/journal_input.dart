@@ -37,18 +37,25 @@ class _SpeechScreenState extends State<JournalEntry> {
   }
 
   final sentiment = Sentiment();
+  final String constScore = "Your Sentiment score is: ";
+  String _score = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text('confidence is: ${(_confidence * 100.0).toStringAsFixed(1)}%'),
+        title: Text(_score),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-          onPressed: _listen,
-          child: Icon(_isListening ? Icons.mic : Icons.mic_none)),
+      floatingActionButton: Container(
+          height: _isListening ? 50 : 47,
+          width: _isListening ? 50 : 47,
+          child: FloatingActionButton(
+              onPressed: _listen,
+              backgroundColor: _isListening
+                  ? Color.fromARGB(255, 66, 165, 245)
+                  : Color.fromARGB(255, 245, 0, 10),
+              child: Icon(_isListening ? Icons.mic : Icons.mic_none))),
       body: SingleChildScrollView(
         reverse: true,
         child: Column(children: [
@@ -65,8 +72,15 @@ class _SpeechScreenState extends State<JournalEntry> {
             onPressed: () => {txt.clear()},
           ),
           ElevatedButton(
-              onPressed: () => {print(sentiment.analysis(txt.text))},
-              child: Text("Get Score"))
+              onPressed: () {
+                setState(() {
+                  print(sentiment.analysis(txt.text));
+                  _score = constScore;
+                  _score +=
+                      sentiment.analysis(txt.text).values.first.toString();
+                });
+              },
+              child: Text("Get Score")),
         ]),
       ),
     );

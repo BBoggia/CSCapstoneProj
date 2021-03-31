@@ -232,7 +232,7 @@ packages:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.11.0"
+    version: "1.9.2"
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -260,7 +260,7 @@ packages:
       name: remove_emoji
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.5"
+    version: "0.0.3"
   sentiment_dart:
     dependency: "direct main"
     description:
@@ -344,5 +344,5 @@ packages:
     source: hosted
     version: "2.1.0"
 sdks:
-  dart: ">=2.12.0-133.2.beta <3.0.0"
+  dart: ">=2.12.0-0.0 <3.0.0"
   flutter: ">=1.16.0"

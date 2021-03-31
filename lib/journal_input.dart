@@ -27,7 +27,7 @@ class _SpeechScreenState extends State<JournalEntry> {
   stt.SpeechToText _speech;
   bool _isListening = false;
   String text = 'Press the button and start speaking';
-  double _confidence = 1.0;
+  // double _confidence = 1.0;
   var txt = TextEditingController();
 
   @override
@@ -101,7 +101,7 @@ class _SpeechScreenState extends State<JournalEntry> {
             txt.text = tmpTxt + ' ' + val.recognizedWords + ' ';
             // print(val.recognizedWords);
             if (val.hasConfidenceRating && val.confidence > 0) {
-              _confidence = val.confidence;
+              // _confidence = val.confidence;
             }
           }),
         );

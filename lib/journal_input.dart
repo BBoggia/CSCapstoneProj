@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:sentiment_dart/sentiment_dart.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class Today {
   DateTime now;
@@ -73,11 +76,13 @@ class _SpeechScreenState extends State<JournalEntry> {
           ),
           ElevatedButton(
               onPressed: () {
-                setState(() {
+                setState(() {                
                   print(sentiment.analysis(txt.text));
+                  
                   _score = constScore;
                   _score +=
                       sentiment.analysis(txt.text).values.first.toString();
+                   _storeEntry(txt.text, _score); 
                 });
               },
               child: Text("Get Score")),
@@ -111,4 +116,20 @@ class _SpeechScreenState extends State<JournalEntry> {
       _speech.stop();
     }
   }
+}
+
+void _storeEntry(String text, var score) {
+  Today date = new Today(); 
+  
+  FirebaseFirestore.instance
+    .collection('journals')
+      .doc(FirebaseAuth.instance.currentUser.uid).update({ 
+        'DATE W MILISECOND: ': date.todaysDate(), 
+        'Score: ' : score, 
+        'User Entry: ': text
+      });
+  
+
+
+
 }

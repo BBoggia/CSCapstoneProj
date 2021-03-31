@@ -1,3 +1,4 @@
+import 'package:CSCapstoneCourse/journal_input.dart';
 import 'package:flutter/material.dart';
 import 'package:CSCapstoneCourse/user_home.dart';
 
@@ -36,6 +37,14 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => UserMainPage()),
+                );
+              }),
+          ElevatedButton(
+              child: Text("User Entry"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => JournalEntry()),
                 );
               })
         ]),

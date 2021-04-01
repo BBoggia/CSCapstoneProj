@@ -152,6 +152,9 @@ class RecentInputSlider extends StatefulWidget {
 }
 
 class RecentInputSliderState extends State<RecentInputSlider> {
+  /*
+  * This is just a placeholder widget
+  */
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(

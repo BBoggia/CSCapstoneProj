@@ -247,16 +247,8 @@ class RecentSlider extends StatefulWidget {
 
 // ignore: camel_case_types
 class RecentSliderState extends State<RecentSlider> {
-  var userList = [
-    'No Entries',
-    'No Entries',
-    'No Entries',
-    'No Entries',
-    'No Entries',
-    'No Entries',
-    'No Entries'
-  ];
-
+  var userList = ['No Entries'];
+  
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[

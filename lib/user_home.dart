@@ -1,17 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:horoscope/horoscope_flutter.dart';
 
 class UserMainPage extends StatefulWidget {
+  final DateTime now = DateTime.now();
+  final DateFormat readableFormatter = DateFormat('LLL d');
+
+  final DateFormat nonreadableFormatter = DateFormat('yMdHms');
+
   @override
   _UserMainPageState createState() => _UserMainPageState();
 }
 
 class _UserMainPageState extends State<UserMainPage> {
-  void _incrementCounter() {
-    setState(() {
-      Navigator.push(
-        context,
-        new MaterialPageRoute(builder: (ctxt) => new UserMainPage()),
-      );
+  @override
+  void initState() {
+    super.initState();
+    getHoroscope();
+  }
+
+  var userName = 'Bob!';
+  String selectedZodiac = ZodiacSigns.CAPRICORN;
+  String sunsign = "Sunsign",
+      time = "Time of Horoscope",
+      horoscope = "Your Daily Horoscope";
+  var buttonWidth = 150.0, buttonHeight = 65.0, buttonBorderRadius = 7.0;
+  var leftButtonMargins = EdgeInsets.fromLTRB(0, 0, 10.0, 0),
+      rightButtonMargins = EdgeInsets.fromLTRB(10.0, 0, 0, 0);
+
+  void getHoroscope() {
+    Horoscope.getDailyHoroscope(selectedZodiac).then((val) {
+      if (val != null) {
+        setState(() {
+          time = val.date;
+          horoscope = val.horoscope;
+        });
+      }
     });
   }
 
@@ -24,167 +48,265 @@ class _UserMainPageState extends State<UserMainPage> {
       body: Container(
         child: Column(children: <Widget>[
           Container(
-            child: Text(
-              'Last 5 Days:',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+            margin: EdgeInsets.fromLTRB(20, 10, 12, 0),
+            child: Row(
+              children: [
+                Container(
+                  child: Text(
+                    "Welcome, $userName",
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
+                  ),
+                  alignment: Alignment.topLeft,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey[400]),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Text(
+                    widget.readableFormatter.format(widget.now),
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
+                  ),
+                  margin: EdgeInsets.fromLTRB(66, 0, 0, 0),
+                  padding: EdgeInsets.fromLTRB(4, 2, 4, 2),
+                  alignment: Alignment.bottomRight,
+                )
+              ],
             ),
-            margin: EdgeInsets.fromLTRB(32, 0, 0, 0),
-            alignment: Alignment.bottomLeft,
           ),
-          RecentInputSlider(),
+          Container(
+              margin: EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 12.0),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey[400]),
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+              child: RecentSlider()),
           Container(
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey[400]),
                   borderRadius: BorderRadius.all(Radius.circular(20))),
-              margin: EdgeInsets.fromLTRB(12.0, 20.0, 12.0, 0.0),
-              child: Column(children: <Widget>[
-                Container(
-                  margin: EdgeInsets.fromLTRB(0.0, 7.0, 0.0, 7.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        width: 150.0,
-                        child: ElevatedButton(
-                            child: Text("Last Entry"),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => UserMainPage()),
-                              );
-                            }),
-                      ),
-                      Container(
-                        width: 150.0,
-                        child: ElevatedButton(
-                            child: Text("Account"),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => UserMainPage()),
-                              );
-                            }),
-                      )
-                    ],
+              padding: EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
+              margin: EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 8.0),
+              alignment: Alignment.topCenter,
+              child: Column(
+                children: [
+                  Container(
+                    child: Text("Daily $selectedZodiac Horiscope:",
+                        style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    margin: EdgeInsets.fromLTRB(8.0, 6.0, 0, 6.0),
+                    alignment: Alignment.centerLeft,
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(0.0, 7.0, 0.0, 7.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        width: 150.0,
-                        child: ElevatedButton(
-                            child: Text("Last Entry"),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => UserMainPage()),
-                              );
-                            }),
-                      ),
-                      Container(
-                        width: 150.0,
-                        child: ElevatedButton(
-                            child: Text("Account"),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => UserMainPage()),
-                              );
-                            }),
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(0.0, 7.0, 0.0, 7.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        width: 150.0,
-                        child: ElevatedButton(
-                            child: Text("Last Entry"),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => UserMainPage()),
-                              );
-                            }),
-                      ),
-                      Container(
-                        width: 150.0,
-                        child: ElevatedButton(
-                            child: Text("Account"),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => UserMainPage()),
-                              );
-                            }),
-                      )
-                    ],
-                  ),
-                )
-              ]))
+                  SingleChildScrollView(
+                      child: Container(
+                    child: Text(horoscope, style: TextStyle(fontSize: 16)),
+                  ))
+                ],
+              )),
+          Flexible(
+            child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey[400]),
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    margin: EdgeInsets.fromLTRB(12.0, 20.0, 12.0, 60.0),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 12.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  width: buttonWidth,
+                                  height: buttonHeight,
+                                  margin: leftButtonMargins,
+                                  child: ElevatedButton(
+                                      child: Text("New Entry",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 16),
+                                          maxLines: 2),
+                                      style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          buttonBorderRadius)))),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  UserMainPage()),
+                                        );
+                                      }),
+                                ),
+                                Container(
+                                  width: buttonWidth,
+                                  height: buttonHeight,
+                                  margin: rightButtonMargins,
+                                  child: ElevatedButton(
+                                      child: Text("Journal",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 16),
+                                          maxLines: 2),
+                                      style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          buttonBorderRadius)))),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  UserMainPage()),
+                                        );
+                                      }),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0.0, 18.0, 0.0, 0.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Container(
+                                  width: buttonWidth,
+                                  height: buttonHeight,
+                                  margin: leftButtonMargins,
+                                  child: ElevatedButton(
+                                      child: Text("Emotional Analsys",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 16),
+                                          maxLines: 2),
+                                      style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          buttonBorderRadius)))),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  UserMainPage()),
+                                        );
+                                      }),
+                                ),
+                                Container(
+                                  width: buttonWidth,
+                                  height: buttonHeight,
+                                  margin: rightButtonMargins,
+                                  child: ElevatedButton(
+                                      child: Text("Settings",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 15),
+                                          maxLines: 2),
+                                      style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          buttonBorderRadius)))),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  UserMainPage()),
+                                        );
+                                      }),
+                                )
+                              ],
+                            ),
+                          ),
+                        ]))),
+          )
         ]),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (_incrementCounter),
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
 
-class RecentInputSlider extends StatefulWidget {
+// ignore: camel_case_types
+class RecentSlider extends StatefulWidget {
   @override
-  RecentInputSliderState createState() => RecentInputSliderState();
+  RecentSliderState createState() => RecentSliderState();
 }
 
-class RecentInputSliderState extends State<RecentInputSlider> {
-  /*
-  * This is just a placeholder widget
-  */
+// ignore: camel_case_types
+class RecentSliderState extends State<RecentSlider> {
+  var userList = ['No Entries'];
+  
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey[400]),
-          borderRadius: BorderRadius.all(Radius.circular(20))),
-      clipBehavior: Clip.hardEdge,
-      margin: EdgeInsets.fromLTRB(12, 0, 12, 0),
-      height: 150.0,
-      child: ListView(
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          Container(
-            width: 160.0,
-            color: Colors.red,
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                'Recent Entries',
+                style: TextStyle(
+                    color: Colors.blueGrey,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
-          Container(
-            width: 160.0,
-            color: Colors.blue,
+        ),
+        Container(
+          height: 120.0,
+          margin: EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
+          child: ListView.builder(
+            padding: EdgeInsets.only(left: 10.0),
+            scrollDirection: Axis.horizontal,
+            itemCount: userList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UserMainPage(),
+                  ),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Column(
+                    children: <Widget>[
+                      CircleAvatar(
+                        radius: 35.0,
+                        backgroundImage: AssetImage('assets/journal.png'),
+                      ),
+                      SizedBox(height: 6.0),
+                      Text(
+                        userList[index],
+                        style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
           ),
-          Container(
-            width: 160.0,
-            color: Colors.green,
-          ),
-          Container(
-            width: 160.0,
-            color: Colors.yellow,
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

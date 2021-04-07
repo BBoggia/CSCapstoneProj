@@ -8,8 +8,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 
 // Local imports
-import 'home_page.dart';
 import 'login_page.dart';
+import 'user_home.dart';
 
 class WidgetTree extends StatelessWidget {
   @override
@@ -20,6 +20,6 @@ class WidgetTree extends StatelessWidget {
       // if the user is not logged in already then
       return LoginPage(); // take them to login
     } // else
-    return HomePage(); // take them to the homepage
+    return UserMainPage(); // take them to the homepage
   }
 }

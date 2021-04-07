@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:horoscope/horoscope_flutter.dart';
+import 'journal_input.dart';
 
 class UserMainPage extends StatefulWidget {
   final DateTime now = DateTime.now();
@@ -141,7 +142,7 @@ class _UserMainPageState extends State<UserMainPage> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  UserMainPage()),
+                                                  JournalEntry()),
                                         );
                                       }),
                                 ),
@@ -248,7 +249,7 @@ class RecentSlider extends StatefulWidget {
 // ignore: camel_case_types
 class RecentSliderState extends State<RecentSlider> {
   var userList = ['No Entries'];
-  
+
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[

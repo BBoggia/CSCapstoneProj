@@ -14,15 +14,6 @@ var question = [
 var answers = [];
 
 class _InitSurveyPageState extends State<InitialSurveyPage> {
-  void _incrementCounter() {
-    setState(() {
-      Navigator.push(
-        context,
-        new MaterialPageRoute(builder: (ctxt) => new InitialSurveyPage()),
-      );
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     /*

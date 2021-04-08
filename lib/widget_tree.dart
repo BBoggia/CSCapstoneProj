@@ -14,7 +14,7 @@ import 'initial_survey.dart';
 import 'user_home.dart';
 
 final fb = FirebaseDatabase.instance;
-bool hasFilledSurvey = false;
+var hasFilledSurvey = true;
 
 class WidgetTree extends StatelessWidget {
   final ref = fb.reference();
@@ -28,7 +28,7 @@ class WidgetTree extends StatelessWidget {
     } else {
       // check if dob has been entered
       ref.child(user.uid).child("dob").once().then((DataSnapshot data) {
-        if (data.value == "") {
+        if (data.value.toString() == "") {
           // no dob in database
 
           hasFilledSurvey = false;

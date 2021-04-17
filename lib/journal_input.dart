@@ -41,9 +41,14 @@ class JournalEntry extends StatefulWidget {
 class _SpeechScreenState extends State<JournalEntry> {
   stt.SpeechToText _speech;
   bool _isListening = false;
-  final String text = 'Press the button and start speaking'; // default text
+  final String text = ''; // default text
+  final String placeholderText = 'Journal entry...';
   // double _confidence = 1.0; // this is the confidence of the stt, not needed
   var txt = TextEditingController();
+
+  var buttonWidth = 130.0, buttonHeight = 50.0;
+  TextStyle buttonFontStyle =
+      TextStyle(fontSize: 20, fontWeight: FontWeight.w600);
 
   _SpeechScreenState() {
     /*
@@ -78,46 +83,106 @@ class _SpeechScreenState extends State<JournalEntry> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
           // This is the STT button trigger
-          height: _isListening ? 50 : 47,
-          width: _isListening ? 50 : 47,
+          height: _isListening ? 82 : 78,
+          width: _isListening ? 82 : 78,
           child: FloatingActionButton(
               onPressed: _listen,
               backgroundColor: _isListening
                   ? Color.fromARGB(255, 66, 165, 245)
                   : Color.fromARGB(255, 245, 0, 10),
-              child: Icon(_isListening ? Icons.mic : Icons.mic_none))),
-      body: SingleChildScrollView(
-        reverse: true,
-        child: Column(children: [
-          Container(
-            // This is the container for the text input box
-            padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 150.0),
-            child: TextField(
-              minLines: 8,
-              maxLines: 200,
-              controller: txt,
+              child: Icon(
+                _isListening ? Icons.mic : Icons.mic_none,
+                size: 34,
+              ))),
+      body: new GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: Container(
+              child: Column(children: [
+            Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey[400]),
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+              margin: EdgeInsets.fromLTRB(12.0, 18.0, 12.0, 0.0),
+              child: Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.fromLTRB(12.0, 18.0, 12.0, 12.0),
+                    child: Text(
+                      "Hi, I hope you're doing well today! 😃",
+                      style:
+                          TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(12.0, 18.0, 12.0, 22.0),
+                    child: Text(
+                      "Talk or type your journal entry below then press submit.",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                      textAlign: TextAlign.center,
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          ElevatedButton(
-            // This is a temporary button that clears the entry
-            child: Text("clear"),
-            onPressed: () => {txt.clear()},
-          ),
-          ElevatedButton(
-              // This is the button that triggers the sentiment analysys
-              onPressed: () {
-                setState(() {
-                  var sentimentResults = sentiment.analysis(
-                      txt.text); // this is the result from the analysys
-                  print(sentimentResults);
-                  _score = constScore;
-                  _score += sentimentResults['score']
-                      .toString(); // this is where the score is displayed
-                });
-              },
-              child: Text("Get Score")),
-        ]),
-      ),
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.fromLTRB(12.0, 22.0, 12.0, 96.0),
+                child: Column(
+                  children: [
+                    Container(
+                        margin: EdgeInsets.fromLTRB(0.0, 4.0, 0.0, 24.0),
+                        padding: EdgeInsets.fromLTRB(0.0, 4.0, 0.0, 4.0),
+                        child: new ConstrainedBox(
+                            constraints: BoxConstraints(maxHeight: 300.0),
+                            child: TextField(
+                                decoration: InputDecoration(
+                                    labelText: placeholderText,
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10))),
+                                maxLines: null,
+                                controller: txt))),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          width: buttonWidth,
+                          height: buttonHeight,
+                          child: ElevatedButton(
+                            // This is a temporary button that clears the entry
+                            child: Text("clear", style: buttonFontStyle),
+                            onPressed: () => {txt.clear()},
+                          ),
+                        ),
+                        Container(
+                          width: buttonWidth,
+                          height: buttonHeight,
+                          child: ElevatedButton(
+                              // This is the button that triggers the sentiment analysys
+                              onPressed: () {
+                                setState(() {
+                                  var sentimentResults = sentiment.analysis(txt
+                                      .text); // this is the result from the analysys
+                                  print(sentimentResults);
+                                  _score = constScore;
+                                  _score += sentimentResults['score']
+                                      .toString(); // this is where the score is displayed
+                                });
+                              },
+                              child: Text("Submit", style: buttonFontStyle)),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            )
+          ]))),
     );
   }
 

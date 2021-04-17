@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:horoscope/horoscope_flutter.dart';
 import 'journal_input.dart';
+import 'journal_calendar.dart';
 
 class UserMainPage extends StatefulWidget {
   final DateTime now = DateTime.now();
@@ -67,7 +68,7 @@ class _UserMainPageState extends State<UserMainPage> {
                     widget.readableFormatter.format(widget.now),
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
                   ),
-                  margin: EdgeInsets.fromLTRB(66, 0, 0, 0),
+                  margin: EdgeInsets.fromLTRB(55, 0, 0, 0),
                   padding: EdgeInsets.fromLTRB(4, 2, 4, 2),
                   alignment: Alignment.bottomRight,
                 )
@@ -76,14 +77,15 @@ class _UserMainPageState extends State<UserMainPage> {
           ),
           Container(
               margin: EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 12.0),
+              padding: EdgeInsets.fromLTRB(0, 8.0, 0, 0),
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey[400]),
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
               child: RecentSlider()),
           Container(
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey[400]),
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
               padding: EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
               margin: EdgeInsets.fromLTRB(12.0, 12.0, 12.0, 8.0),
               alignment: Alignment.topCenter,
@@ -111,7 +113,7 @@ class _UserMainPageState extends State<UserMainPage> {
                 child: Container(
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey[400]),
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
                     margin: EdgeInsets.fromLTRB(12.0, 20.0, 12.0, 60.0),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -167,7 +169,7 @@ class _UserMainPageState extends State<UserMainPage> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  UserMainPage()),
+                                                  JournalCalendar()),
                                         );
                                       }),
                                 )

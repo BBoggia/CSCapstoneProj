@@ -28,6 +28,25 @@ class JournalCalendar extends StatefulWidget {
 
 class JournalCalendarState extends State<JournalCalendar> {
   var selectedMonth = 0;
+  var year = 2021;
+
+  void nextMonth() {
+    if (selectedMonth == 11) {
+      selectedMonth = 0;
+      year += 1;
+    } else {
+      selectedMonth += 1;
+    }
+  }
+
+  void previousMonth() {
+    if (selectedMonth == 0) {
+      selectedMonth = 11;
+      year -= 1;
+    } else {
+      selectedMonth -= 1;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +65,11 @@ class JournalCalendarState extends State<JournalCalendar> {
                     Ink(
                       child: InkWell(
                         borderRadius: BorderRadius.circular(1000.0),
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            previousMonth();
+                          });
+                        },
                         child: Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Row(
@@ -66,10 +89,20 @@ class JournalCalendarState extends State<JournalCalendar> {
                       ),
                     ),
                     Spacer(),
+                    Text(
+                      '$year',
+                      style: TextStyle(
+                          fontSize: 24.0, fontWeight: FontWeight.w500),
+                    ),
+                    Spacer(),
                     Ink(
                       child: InkWell(
                         borderRadius: BorderRadius.circular(1000.0),
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            nextMonth();
+                          });
+                        },
                         child: Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Row(
@@ -97,9 +130,10 @@ class JournalCalendarState extends State<JournalCalendar> {
                   crossAxisCount: 7,
                   children: List.generate(widget.monthDayCount[selectedMonth],
                       (index) {
+                    var calendarDay = index + 1;
                     return Center(
                       child: Text(
-                        '$index',
+                        '$calendarDay',
                         style: Theme.of(context).textTheme.headline5,
                       ),
                     );

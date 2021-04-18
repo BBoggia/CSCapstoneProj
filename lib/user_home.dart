@@ -23,9 +23,7 @@ class _UserMainPageState extends State<UserMainPage> {
 
   var userName = 'Bob!';
   String selectedZodiac = ZodiacSigns.CAPRICORN;
-  String sunsign = "Sunsign",
-      time = "Time of Horoscope",
-      horoscope = "Your Daily Horoscope";
+  String sunsign = "Sunsign", horoscope = "Your Daily Horoscope";
   var buttonWidth = 150.0, buttonHeight = 65.0, buttonBorderRadius = 7.0;
   var leftButtonMargins = EdgeInsets.fromLTRB(0, 0, 10.0, 0),
       rightButtonMargins = EdgeInsets.fromLTRB(10.0, 0, 0, 0);
@@ -34,7 +32,6 @@ class _UserMainPageState extends State<UserMainPage> {
     Horoscope.getDailyHoroscope(selectedZodiac).then((val) {
       if (val != null) {
         setState(() {
-          time = val.date;
           horoscope = val.horoscope;
         });
       }
@@ -60,6 +57,7 @@ class _UserMainPageState extends State<UserMainPage> {
                   ),
                   alignment: Alignment.topLeft,
                 ),
+                Spacer(),
                 Container(
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey[400]),
@@ -68,7 +66,6 @@ class _UserMainPageState extends State<UserMainPage> {
                     widget.readableFormatter.format(widget.now),
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
                   ),
-                  margin: EdgeInsets.fromLTRB(55, 0, 0, 0),
                   padding: EdgeInsets.fromLTRB(4, 2, 4, 2),
                   alignment: Alignment.bottomRight,
                 )

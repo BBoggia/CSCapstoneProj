@@ -104,8 +104,11 @@ class Authentication {
         .child(_firebaseAuth.currentUser.uid)
         .child("dob")
         .once()
-        .then((value) => dob = value.value);
+        .then((DataSnapshot data) {
+      dob = data.value.toString();
+    });
 
+    print(_firebaseAuth.currentUser.uid);
     print("this is the dob: $dob");
 
     if (dob == null) {

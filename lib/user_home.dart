@@ -278,6 +278,7 @@ class RecentSliderState extends State<RecentSlider> {
     print(entries);
   }
 
+  // this is for formatting the date of each journal entry
   String format(String date) {
     String tpDate;
     if (date.length == 12) {
@@ -294,6 +295,7 @@ class RecentSliderState extends State<RecentSlider> {
   }
 
   var userList = ['No Entries'];
+  // count is used when entries == null
   int count;
   Widget build(BuildContext context) {
     if (entries == null) {

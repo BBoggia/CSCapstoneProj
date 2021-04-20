@@ -3,7 +3,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
+import 'package:horoscope/horoscope_flutter.dart';
 import 'package:firebase_database/firebase_database.dart';
+
+final fb = FirebaseDatabase.instance;
+final ref = fb.reference();
 
 /*
 * This is the authentication API
@@ -92,8 +96,119 @@ class Authentication {
     await _firebaseAuth.signOut(); // sign out from firebase
   }
 
-  setupDatabase(DatabaseReference ref) {
+  String GetZodiacSign() {
+    // var db = FirebaseDatabase.instance;
+    String dob;
     ref
+        .child(_firebaseAuth.currentUser.uid)
+        .child("dob")
+        .once()
+        .then((value) => dob);
+
+    if (dob == null) {
+      dob = "1/1/2000";
+    }
+
+    int monthOfBirth;
+    int dayOfBirth;
+
+    var tmp = dob.split('/');
+    monthOfBirth = int.parse(tmp[0]);
+    dayOfBirth = int.parse(tmp[1]);
+
+    switch (monthOfBirth) {
+      case 1:
+        if (dayOfBirth > 20) {
+          return ZodiacSigns.CAPRICORN;
+        } else {
+          return ZodiacSigns.AQUARIUS;
+        }
+        break;
+      case 2:
+        if (dayOfBirth > 19) {
+          return ZodiacSigns.PISCES;
+        } else {
+          return ZodiacSigns.AQUARIUS;
+        }
+        break;
+      case 3:
+        if (dayOfBirth > 21) {
+          return ZodiacSigns.ARIES;
+        } else {
+          return ZodiacSigns.PISCES;
+        }
+        break;
+      case 4:
+        if (dayOfBirth > 20) {
+          return ZodiacSigns.TAURUS;
+        } else {
+          return ZodiacSigns.ARIES;
+        }
+        break;
+      case 5:
+        if (dayOfBirth > 21) {
+          return ZodiacSigns.GEMINI;
+        } else {
+          return ZodiacSigns.TAURUS;
+        }
+        break;
+      case 6:
+        if (dayOfBirth > 21) {
+          return ZodiacSigns.CANCER;
+        } else {
+          return ZodiacSigns.GEMINI;
+        }
+        break;
+      case 7:
+        if (dayOfBirth > 23) {
+          return ZodiacSigns.LEO;
+        } else {
+          return ZodiacSigns.CANCER;
+        }
+        break;
+      case 8:
+        if (dayOfBirth > 23) {
+          return ZodiacSigns.VIRGO;
+        } else {
+          return ZodiacSigns.LEO;
+        }
+        break;
+      case 9:
+        if (dayOfBirth > 23) {
+          return ZodiacSigns.LIBRA;
+        } else {
+          return ZodiacSigns.VIRGO;
+        }
+        break;
+      case 10:
+        if (dayOfBirth > 23) {
+          return ZodiacSigns.SCORPIO;
+        } else {
+          return ZodiacSigns.LIBRA;
+        }
+        break;
+      case 11:
+        if (dayOfBirth > 23) {
+          return ZodiacSigns.SAGITTARIUS;
+        } else {
+          return ZodiacSigns.SCORPIO;
+        }
+        break;
+      case 12:
+        if (dayOfBirth > 22) {
+          return ZodiacSigns.CAPRICORN;
+        } else {
+          return ZodiacSigns.SAGITTARIUS;
+        }
+        break;
+      default:
+        throw Exception("Error, invalid DOB");
+        break;
+    }
+}
+
+  setupDatabase(DatabaseReference ref) {
+  ref
         .child(_firebaseAuth.currentUser.uid)
         .child("dob")
         .once()
@@ -120,6 +235,7 @@ class Authentication {
       ref.child(_firebaseAuth.currentUser.uid).child('family_history').set("");
       ref.child(_firebaseAuth.currentUser.uid).child('sad_alone').set("");
       ref.child(_firebaseAuth.currentUser.uid).child('anxious').set("");
+
     }
   }
 }

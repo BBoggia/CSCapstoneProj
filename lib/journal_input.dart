@@ -134,31 +134,6 @@ class _SpeechScreenState extends State<JournalEntry> {
                 ],
               ),
             ),
-<<<<<<< HEAD
-          ),
-          ElevatedButton(
-            // This is a temporary button that clears the entry
-            child: Text("clear"),
-            onPressed: () => {txt.clear()},
-          ),
-          ElevatedButton(
-              // This is the button that triggers the sentiment analysys
-              onPressed: () {
-                setState(() {
-                  var sentimentResults = sentiment.analysis(
-                      txt.text); // this is the result from the analysys
-                  print(sentimentResults);
-
-                  _score = constScore;
-                  _score += sentimentResults['score']
-                      .toString(); // this is where the score is displayed
-                  saveToFirebase(sentimentResults['score'], txt.text);
-                });
-              },
-              child: Text("Get Score")),
-        ]),
-      ),
-=======
             Expanded(
               child: Container(
                 margin: EdgeInsets.fromLTRB(12.0, 22.0, 12.0, 96.0),
@@ -200,6 +175,8 @@ class _SpeechScreenState extends State<JournalEntry> {
                                   var sentimentResults = sentiment.analysis(txt
                                       .text); // this is the result from the analysys
                                   print(sentimentResults);
+                                  saveToFirebase(
+                                      sentimentResults['score'], txt.text);
                                   _score = constScore;
                                   _score += sentimentResults['score']
                                       .toString(); // this is where the score is displayed
@@ -214,7 +191,6 @@ class _SpeechScreenState extends State<JournalEntry> {
               ),
             )
           ]))),
->>>>>>> f16c545c2ff6eb2729d5f27885771034e47b7a11
     );
   }
 

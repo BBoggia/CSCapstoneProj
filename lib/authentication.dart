@@ -10,7 +10,7 @@ import 'package:firebase_database/firebase_database.dart';
 * Other files refer to this class to handle Google authentication
 */
 final fb = FirebaseDatabase.instance;
-var hasSignedIn = true;
+var hasSignedIn = false;
 
 class Authentication {
   // class declaration and definition
@@ -79,13 +79,7 @@ class Authentication {
   */
     if (_firebaseAuth.currentUser.uid != null) {
       // if the current uid exists
-      return new Container(
-        child: Text(
-            _firebaseAuth.currentUser
-                .displayName, // creates text widget for username and return it
-            textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.bold)),
-      );
+      return _firebaseAuth.currentUser.displayName;
     }
   }
 
@@ -106,30 +100,26 @@ class Authentication {
         .then((DataSnapshot data) {
       if (data.value.toString() == "null") {
         // no dob in database
-        //print("-----------data.value == null------------------");
-        //print(data.value.toString() == "null");
 
         hasSignedIn = false;
       } else {
         // dob is in database
+
         hasSignedIn = true;
       }
     });
-    //ref.child(_firebaseAuth.currentUser.uid).child("dob");
-    print(hasSignedIn);
     if (hasSignedIn) {
-      //print("User has signed in before");
+      print("User has signed in before");
     } else {
-      //print("first time signing in");
+      print("first time signing in");
       ref
           .child(_firebaseAuth.currentUser.uid)
           .child("name")
           .set(getProfileName());
-      ref.child(_firebaseAuth.currentUser.uid).child("dob").set("");
+      ref.child(_firebaseAuth.currentUser.uid).child("dob").set("3/23/99");
       ref.child(_firebaseAuth.currentUser.uid).child('family_history').set("");
       ref.child(_firebaseAuth.currentUser.uid).child('sad_alone').set("");
       ref.child(_firebaseAuth.currentUser.uid).child('anxious').set("");
-      ref.child(_firebaseAuth.currentUser.uid).child("journals");
     }
   }
 }

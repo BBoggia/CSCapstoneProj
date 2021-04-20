@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:horoscope/horoscope_flutter.dart';
 import 'journal_input.dart';
 import 'journal_calendar.dart';
+import 'authentication.dart';
 
 class UserMainPage extends StatefulWidget {
   final DateTime now = DateTime.now();
@@ -21,8 +22,8 @@ class _UserMainPageState extends State<UserMainPage> {
     getHoroscope();
   }
 
-  var userName = 'Bob!';
-  String selectedZodiac = ZodiacSigns.CAPRICORN;
+  String userName = Authentication().getProfileName().split(' ')[0];
+  String selectedZodiac = Authentication().GetZodiacSign();
   String sunsign = "Sunsign", horoscope = "Your Daily Horoscope";
   var buttonWidth = 150.0, buttonHeight = 65.0, buttonBorderRadius = 7.0;
   var leftButtonMargins = EdgeInsets.fromLTRB(0, 0, 10.0, 0),
@@ -53,7 +54,7 @@ class _UserMainPageState extends State<UserMainPage> {
                 Container(
                   child: Text(
                     "Welcome, $userName",
-                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
                   ),
                   alignment: Alignment.topLeft,
                 ),
@@ -64,7 +65,7 @@ class _UserMainPageState extends State<UserMainPage> {
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Text(
                     widget.readableFormatter.format(widget.now),
-                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
                   ),
                   padding: EdgeInsets.fromLTRB(4, 2, 4, 2),
                   alignment: Alignment.bottomRight,
@@ -89,7 +90,7 @@ class _UserMainPageState extends State<UserMainPage> {
               child: Column(
                 children: [
                   Container(
-                    child: Text("Daily $selectedZodiac Horiscope:",
+                    child: Text("Daily $selectedZodiac Horoscope:",
                         style: TextStyle(
                           color: Colors.blueGrey,
                           fontSize: 18.0,
@@ -208,7 +209,7 @@ class _UserMainPageState extends State<UserMainPage> {
                                   height: buttonHeight,
                                   margin: rightButtonMargins,
                                   child: ElevatedButton(
-                                      child: Text("Settings",
+                                      child: Text("Logout",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(fontSize: 15),
                                           maxLines: 2),
@@ -220,12 +221,7 @@ class _UserMainPageState extends State<UserMainPage> {
                                                       BorderRadius.circular(
                                                           buttonBorderRadius)))),
                                       onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  UserMainPage()),
-                                        );
+                                        Authentication().signOut();
                                       }),
                                 )
                               ],

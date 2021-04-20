@@ -4,6 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:horoscope/horoscope_flutter.dart';
+import 'package:firebase_database/firebase_database.dart';
+
+final fb = FirebaseDatabase.instance;
+final ref = fb.reference();
 
 /*
 * This is the authentication API
@@ -75,13 +79,7 @@ class Authentication {
   */
     if (_firebaseAuth.currentUser.uid != null) {
       // if the current uid exists
-      return new Container(
-        child: Text(
-            _firebaseAuth.currentUser
-                .displayName, // creates text widget for username and return it
-            textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.bold)),
-      );
+      return _firebaseAuth.currentUser.displayName;
     }
   }
 
@@ -96,7 +94,16 @@ class Authentication {
 
   String GetZodiacSign() {
     // var db = FirebaseDatabase.instance;
-    String dob = "06/08/1997";
+    String dob;
+    ref
+        .child(_firebaseAuth.currentUser.uid)
+        .child("dob")
+        .once()
+        .then((value) => dob);
+
+    if (dob == null) {
+      dob = "1/1/2000";
+    }
 
     int monthOfBirth;
     int dayOfBirth;

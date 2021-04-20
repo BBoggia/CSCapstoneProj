@@ -26,9 +26,12 @@ class JournalCalendar extends StatefulWidget {
   JournalCalendarState createState() => JournalCalendarState();
 }
 
+DateTime now = new DateTime.now();
+
 class JournalCalendarState extends State<JournalCalendar> {
-  var selectedMonth = 0;
-  var year = 2021;
+  DateTime date = new DateTime(now.month);
+  var selectedMonth = now.month - 1;
+  var year = now.year;
 
   void nextMonth() {
     if (selectedMonth == 11) {

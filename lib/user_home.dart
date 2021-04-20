@@ -294,7 +294,13 @@ class RecentSliderState extends State<RecentSlider> {
   }
 
   var userList = ['No Entries'];
+  int count;
   Widget build(BuildContext context) {
+    if (entries == null) {
+      count = 0;
+    } else {
+      count = entries.length;
+    }
     getUserJournalEntries();
     return Column(
       children: <Widget>[
@@ -319,7 +325,7 @@ class RecentSliderState extends State<RecentSlider> {
           child: ListView.builder(
             padding: EdgeInsets.only(left: 10.0),
             scrollDirection: Axis.horizontal,
-            itemCount: entries.length,
+            itemCount: count,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () => Navigator.push(

@@ -13,7 +13,6 @@ final ref = fb.reference();
 * This is the authentication API
 * Other files refer to this class to handle Google authentication
 */
-final fb = FirebaseDatabase.instance;
 var hasSignedIn = false;
 
 class Authentication {
@@ -205,10 +204,10 @@ class Authentication {
         throw Exception("Error, invalid DOB");
         break;
     }
-}
+  }
 
   setupDatabase(DatabaseReference ref) {
-  ref
+    ref
         .child(_firebaseAuth.currentUser.uid)
         .child("dob")
         .once()
@@ -235,7 +234,6 @@ class Authentication {
       ref.child(_firebaseAuth.currentUser.uid).child('family_history').set("");
       ref.child(_firebaseAuth.currentUser.uid).child('sad_alone').set("");
       ref.child(_firebaseAuth.currentUser.uid).child('anxious').set("");
-
     }
   }
 }

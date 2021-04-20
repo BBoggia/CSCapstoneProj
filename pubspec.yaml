@@ -26,7 +26,6 @@ dependencies:
   firebase_core: "0.7.0"
   firebase_database: "^6.0.0"
   firebase_auth: "^0.20.1"
-  firebase_database: "^6.0.0"
   google_sign_in: ^4.5.9
   provider: ^4.3.3
   flutter_signin_button: ^1.1.0

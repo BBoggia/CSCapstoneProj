@@ -95,14 +95,18 @@ class Authentication {
     await _firebaseAuth.signOut(); // sign out from firebase
   }
 
+  String dob;
+
   String GetZodiacSign() {
     // var db = FirebaseDatabase.instance;
-    String dob;
+
     ref
         .child(_firebaseAuth.currentUser.uid)
         .child("dob")
         .once()
-        .then((value) => dob);
+        .then((value) => dob = value.value);
+
+    print("this is the dob: $dob");
 
     if (dob == null) {
       dob = "1/1/2000";

@@ -1,8 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:horoscope/horoscope_flutter.dart';
 import 'journal_input.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'journal_calendar.dart';
+import 'package:firebase_database/firebase_database.dart';
+
+final fb = FirebaseDatabase.instance;
+final ref = fb.reference();
 
 class UserMainPage extends StatefulWidget {
   final DateTime now = DateTime.now();
@@ -14,11 +21,22 @@ class UserMainPage extends StatefulWidget {
   _UserMainPageState createState() => _UserMainPageState();
 }
 
+final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+Future<void> signOut() async {
+  /*
+  * This function signs out the user
+  */
+  final googleSignIn = GoogleSignIn(); // get current sign in
+  await googleSignIn.signOut(); //sign it out from google
+  await _firebaseAuth.signOut(); // sign out from firebase
+}
+
 class _UserMainPageState extends State<UserMainPage> {
   @override
   void initState() {
     super.initState();
     getHoroscope();
+    //signOut();
   }
 
   var userName = 'Bob!';
@@ -239,6 +257,9 @@ class _UserMainPageState extends State<UserMainPage> {
   }
 }
 
+Map<dynamic, dynamic> entries;
+List dates;
+
 // ignore: camel_case_types
 class RecentSlider extends StatefulWidget {
   @override
@@ -247,9 +268,34 @@ class RecentSlider extends StatefulWidget {
 
 // ignore: camel_case_types
 class RecentSliderState extends State<RecentSlider> {
-  var userList = ['No Entries'];
+  void getUserJournalEntries() async {
+    ref
+        .child(_firebaseAuth.currentUser.uid)
+        .child("journals")
+        .limitToFirst(7)
+        .once()
+        .then((value) => entries = value.value);
+    print(entries);
+  }
 
+  String format(String date) {
+    String tpDate;
+    if (date.length == 12) {
+      tpDate = date.substring(0, date.length - 5);
+    } else {
+      tpDate = date.substring(0, date.length - 6);
+    }
+    String formattedDate = tpDate.substring(0, 4) +
+        "/" +
+        tpDate.substring(4, 5) +
+        "/" +
+        tpDate.substring(5, 7);
+    return formattedDate;
+  }
+
+  var userList = ['No Entries'];
   Widget build(BuildContext context) {
+    getUserJournalEntries();
     return Column(
       children: <Widget>[
         Padding(
@@ -273,7 +319,7 @@ class RecentSliderState extends State<RecentSlider> {
           child: ListView.builder(
             padding: EdgeInsets.only(left: 10.0),
             scrollDirection: Axis.horizontal,
-            itemCount: userList.length,
+            itemCount: entries.length,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () => Navigator.push(
@@ -292,7 +338,7 @@ class RecentSliderState extends State<RecentSlider> {
                       ),
                       SizedBox(height: 6.0),
                       Text(
-                        userList[index],
+                        format(entries.keys.elementAt(index)),
                         style: TextStyle(
                           color: Colors.blueGrey,
                           fontSize: 16.0,

@@ -7,6 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:sentiment_dart/sentiment_dart.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
+
+final fb = FirebaseDatabase.instance;
+final ref = fb.reference();
+final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
 // This class is today's date and time
 class Today {
@@ -169,6 +175,8 @@ class _SpeechScreenState extends State<JournalEntry> {
                                   var sentimentResults = sentiment.analysis(txt
                                       .text); // this is the result from the analysys
                                   print(sentimentResults);
+                                  saveToFirebase(
+                                      sentimentResults['score'], txt.text);
                                   _score = constScore;
                                   _score += sentimentResults['score']
                                       .toString(); // this is where the score is displayed
@@ -184,6 +192,25 @@ class _SpeechScreenState extends State<JournalEntry> {
             )
           ]))),
     );
+  }
+
+  void saveToFirebase(score, text) {
+    final DateTime now = DateTime.now();
+
+    final DateFormat nonreadableFormatter = DateFormat('yMdHms');
+
+    ref
+        .child(_firebaseAuth.currentUser.uid)
+        .child("journals")
+        .child(nonreadableFormatter.format(now))
+        .child("score")
+        .set(score);
+    ref
+        .child(_firebaseAuth.currentUser.uid)
+        .child("journals")
+        .child(nonreadableFormatter.format(now))
+        .child("journal_entry")
+        .set(text);
   }
 
   void _listen() async {

@@ -3,16 +3,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 /*
 * This is the authentication API
 * Other files refer to this class to handle Google authentication
 */
+final fb = FirebaseDatabase.instance;
+var hasSignedIn = false;
 
 class Authentication {
   // class declaration and definition
   final FirebaseAuth _firebaseAuth =
       FirebaseAuth.instance; // get the current instance of firebase auth
+  final ref = fb.reference();
 
   Future<void> signInWithGoogle() async {
     // this function handles the request to google for signing in
@@ -27,6 +31,7 @@ class Authentication {
           GoogleAuthProvider.credential(
               idToken: googleAuth.idToken, accessToken: googleAuth.accessToken),
         ); // sign in and send data to firebase database
+        setupDatabase(ref); // builds the specific users db
         return userCredential.user; // return user data
       }
     } else {
@@ -74,13 +79,7 @@ class Authentication {
   */
     if (_firebaseAuth.currentUser.uid != null) {
       // if the current uid exists
-      return new Container(
-        child: Text(
-            _firebaseAuth.currentUser
-                .displayName, // creates text widget for username and return it
-            textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.bold)),
-      );
+      return _firebaseAuth.currentUser.displayName;
     }
   }
 
@@ -91,5 +90,36 @@ class Authentication {
     final googleSignIn = GoogleSignIn(); // get current sign in
     await googleSignIn.signOut(); //sign it out from google
     await _firebaseAuth.signOut(); // sign out from firebase
+  }
+
+  setupDatabase(DatabaseReference ref) {
+    ref
+        .child(_firebaseAuth.currentUser.uid)
+        .child("dob")
+        .once()
+        .then((DataSnapshot data) {
+      if (data.value.toString() == "null") {
+        // no dob in database
+
+        hasSignedIn = false;
+      } else {
+        // dob is in database
+
+        hasSignedIn = true;
+      }
+    });
+    if (hasSignedIn) {
+      print("User has signed in before");
+    } else {
+      print("first time signing in");
+      ref
+          .child(_firebaseAuth.currentUser.uid)
+          .child("name")
+          .set(getProfileName());
+      ref.child(_firebaseAuth.currentUser.uid).child("dob").set("3/23/99");
+      ref.child(_firebaseAuth.currentUser.uid).child('family_history').set("");
+      ref.child(_firebaseAuth.currentUser.uid).child('sad_alone').set("");
+      ref.child(_firebaseAuth.currentUser.uid).child('anxious').set("");
+    }
   }
 }

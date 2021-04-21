@@ -392,17 +392,19 @@ class RecentSliderState extends State<RecentSlider> {
 
   // this is for formatting the date of each journal entry
   String format(String date) {
-    String tpDate;
+    String tmpDate;
     if (date.length == 12) {
-      tpDate = date.substring(0, date.length - 5);
+      tmpDate = date.substring(0, date.length - 5);
+    } else if (date.length == 11) {
+      tmpDate = date.substring(0, date.length - 4);
     } else {
-      tpDate = date.substring(0, date.length - 6);
+      tmpDate = date.substring(0, date.length - 6);
     }
-    String formattedDate = tpDate.substring(0, 4) +
+    String formattedDate = tmpDate.substring(0, 4) +
         "/" +
-        tpDate.substring(4, 5) +
+        tmpDate.substring(4, 5) +
         "/" +
-        tpDate.substring(5, 7);
+        tmpDate.substring(5, 7);
     return formattedDate;
   }
 

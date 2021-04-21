@@ -8,9 +8,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'journal_calendar.dart';
 import 'authentication.dart';
 import 'package:firebase_database/firebase_database.dart';
+
 final fb = FirebaseDatabase.instance;
 final ref = fb.reference();
-
 
 class UserMainPage extends StatefulWidget {
   final DateTime now = DateTime.now();
@@ -40,15 +40,136 @@ class _UserMainPageState extends State<UserMainPage> {
     //signOut();
   }
 
+  var dob;
+  Future<String> getZodiacSign() async {
+    // var db = FirebaseDatabase.instance;
+
+    await ref
+        .child(_firebaseAuth.currentUser.uid)
+        .child("dob")
+        .once()
+        .then((value) => dob = (value.value.toString()));
+
+    if (dob == null) {
+      dob = "1/1/2000";
+    }
+    print(dob);
+    return dob;
+  }
+
+  String convertZodiacSign(String dob) {
+    int monthOfBirth;
+    int dayOfBirth;
+
+    var tmp = dob.split('/');
+    //print(dob);
+    monthOfBirth = int.parse(tmp[0]);
+    dayOfBirth = int.parse(tmp[1]);
+
+    switch (monthOfBirth) {
+      case 1:
+        if (dayOfBirth > 20) {
+          return ZodiacSigns.CAPRICORN;
+        } else {
+          return ZodiacSigns.AQUARIUS;
+        }
+        break;
+      case 2:
+        if (dayOfBirth > 19) {
+          return ZodiacSigns.PISCES;
+        } else {
+          return ZodiacSigns.AQUARIUS;
+        }
+        break;
+      case 3:
+        if (dayOfBirth > 21) {
+          return ZodiacSigns.ARIES;
+        } else {
+          return ZodiacSigns.PISCES;
+        }
+        break;
+      case 4:
+        if (dayOfBirth > 20) {
+          return ZodiacSigns.TAURUS;
+        } else {
+          return ZodiacSigns.ARIES;
+        }
+        break;
+      case 5:
+        if (dayOfBirth > 21) {
+          return ZodiacSigns.GEMINI;
+        } else {
+          return ZodiacSigns.TAURUS;
+        }
+        break;
+      case 6:
+        if (dayOfBirth > 21) {
+          return ZodiacSigns.CANCER;
+        } else {
+          return ZodiacSigns.GEMINI;
+        }
+        break;
+      case 7:
+        if (dayOfBirth > 23) {
+          return ZodiacSigns.LEO;
+        } else {
+          return ZodiacSigns.CANCER;
+        }
+        break;
+      case 8:
+        if (dayOfBirth > 23) {
+          return ZodiacSigns.VIRGO;
+        } else {
+          return ZodiacSigns.LEO;
+        }
+        break;
+      case 9:
+        if (dayOfBirth > 23) {
+          return ZodiacSigns.LIBRA;
+        } else {
+          return ZodiacSigns.VIRGO;
+        }
+        break;
+      case 10:
+        if (dayOfBirth > 23) {
+          return ZodiacSigns.SCORPIO;
+        } else {
+          return ZodiacSigns.LIBRA;
+        }
+        break;
+      case 11:
+        if (dayOfBirth > 23) {
+          return ZodiacSigns.SAGITTARIUS;
+        } else {
+          return ZodiacSigns.SCORPIO;
+        }
+        break;
+      case 12:
+        if (dayOfBirth > 22) {
+          return ZodiacSigns.CAPRICORN;
+        } else {
+          return ZodiacSigns.SAGITTARIUS;
+        }
+        break;
+      default:
+        throw Exception("Error, invalid DOB");
+        break;
+    }
+  }
+
   String userName = Authentication().getProfileName().split(' ')[0];
-  String selectedZodiac = Authentication().GetZodiacSign();
+  //String selectedZodiac = Authentication().GetZodiacSign();
+  var convertedSign;
   String sunsign = "Sunsign", horoscope = "Your Daily Horoscope";
   var buttonWidth = 150.0, buttonHeight = 65.0, buttonBorderRadius = 7.0;
   var leftButtonMargins = EdgeInsets.fromLTRB(0, 0, 10.0, 0),
       rightButtonMargins = EdgeInsets.fromLTRB(10.0, 0, 0, 0);
 
-  void getHoroscope() {
-    Horoscope.getDailyHoroscope(selectedZodiac).then((val) {
+  void getHoroscope() async {
+    var sign = await getZodiacSign();
+    convertedSign = convertZodiacSign(sign);
+
+    Horoscope.getDailyHoroscope(convertedSign).then((val) {
       if (val != null) {
         setState(() {
           horoscope = val.horoscope;
@@ -108,7 +229,7 @@ class _UserMainPageState extends State<UserMainPage> {
               child: Column(
                 children: [
                   Container(
-                    child: Text("Daily $selectedZodiac Horoscope:",
+                    child: Text("Daily $convertedSign Horoscope:",
                         style: TextStyle(
                           color: Colors.blueGrey,
                           fontSize: 18.0,
@@ -177,17 +298,12 @@ class _UserMainPageState extends State<UserMainPage> {
                                           shape: MaterialStateProperty.all<
                                                   RoundedRectangleBorder>(
                                               RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          buttonBorderRadius)))),
-                                      onPressed: () {
-                                        Navigator.push(
+                                                  borderRadius: BorderRadius.circular(
+                                                      buttonBorderRadius)))),
+                                      onPressed: () => Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) =>
-                                                  JournalCalendar()),
-                                        );
-                                      }),
+                                              builder: (_) => JournalEntry()))),
                                 )
                               ],
                             ),

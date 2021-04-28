@@ -3,12 +3,14 @@
 */
 
 //package improts
+import 'package:CSCapstoneCourse/user_home.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:sentiment_dart/sentiment_dart.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'dart:async';
 
 final fb = FirebaseDatabase.instance;
 final ref = fb.reference();
@@ -170,7 +172,7 @@ class _SpeechScreenState extends State<JournalEntry> {
                           height: buttonHeight,
                           child: ElevatedButton(
                               // This is the button that triggers the sentiment analysys
-                              onPressed: () {
+                              onPressed: () async {
                                 setState(() {
                                   var sentimentResults = sentiment.analysis(txt
                                       .text); // this is the result from the analysys
@@ -181,6 +183,12 @@ class _SpeechScreenState extends State<JournalEntry> {
                                   _score += sentimentResults['score']
                                       .toString(); // this is where the score is displayed
                                 });
+                                await new Future.delayed(
+                                    const Duration(seconds: 1));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => UserMainPage()));
                               },
                               child: Text("Submit", style: buttonFontStyle)),
                         )

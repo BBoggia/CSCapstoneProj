@@ -7,7 +7,7 @@ import 'package:firebase_database/firebase_database.dart';
 class JournalEntryViewer extends StatefulWidget {
   @override
   _JournalEntryViewerState createState() => _JournalEntryViewerState();
-  var currentJournal = "1/24/2021";
+  var currentJournal = "4/28/2021";
   var sentimentScore = 1.0;
   String fullEntryTxt = 'Placeholder';
 
@@ -35,7 +35,7 @@ class _JournalEntryViewerState extends State<JournalEntryViewer> {
         margin: EdgeInsets.fromLTRB(12.0, 22.0, 12.0, 96.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 0, 50.0),
+            margin: EdgeInsets.fromLTRB(0, 0, 0, 60.0),
             child: Text(widget.currentJournal,
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500)),
           ),
@@ -43,10 +43,15 @@ class _JournalEntryViewerState extends State<JournalEntryViewer> {
             children: [
               Spacer(),
               Container(
+                padding: EdgeInsets.all(20.0),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey[400]),
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
                 child: SizedBox(
                   height: 125,
                   width: 125,
                   child: CircularProgressIndicator(
+                    strokeWidth: 8.0,
                     value:
                         widget.scoreConversionFunction(widget.sentimentScore),
                   ),

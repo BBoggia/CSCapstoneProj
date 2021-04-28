@@ -1,3 +1,5 @@
+import 'dart:ffi';
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -6,11 +8,16 @@ import 'journal_input.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'journal_calendar.dart';
+import 'initial_survey.dart';
 import 'authentication.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'journal_entry_view.dart';
 
 final fb = FirebaseDatabase.instance;
 final ref = fb.reference();
+
+Map<dynamic, dynamic> entries;
+List dates;
 
 class UserMainPage extends StatefulWidget {
   final DateTime now = DateTime.now();
@@ -303,17 +310,17 @@ class _UserMainPageState extends State<UserMainPage> {
                                       onPressed: () => Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (_) => JournalEntry()))),
+                                              builder: (_) => JournalCalendar()))),
                                 )
                               ],
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.fromLTRB(0.0, 18.0, 0.0, 0.0),
+                            margin: EdgeInsets.fromLTRB(0.0, 18.0, 8.0, 0.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Container(
+                                /*Container(
                                   width: buttonWidth,
                                   height: buttonHeight,
                                   margin: leftButtonMargins,
@@ -334,12 +341,12 @@ class _UserMainPageState extends State<UserMainPage> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  UserMainPage()),
+                                                  InitialSurveyPage()),
                                         );
                                       }),
-                                ),
+                                ),*/
                                 Container(
-                                  width: buttonWidth,
+                                  width: buttonWidth + 200,
                                   height: buttonHeight,
                                   margin: rightButtonMargins,
                                   child: ElevatedButton(
@@ -369,9 +376,6 @@ class _UserMainPageState extends State<UserMainPage> {
   }
 }
 
-Map<dynamic, dynamic> entries;
-List dates;
-
 // ignore: camel_case_types
 class RecentSlider extends StatefulWidget {
   @override
@@ -380,6 +384,9 @@ class RecentSlider extends StatefulWidget {
 
 // ignore: camel_case_types
 class RecentSliderState extends State<RecentSlider> {
+  String journalText;
+  var journalScore;
+
   void getUserJournalEntries() async {
     ref
         .child(_firebaseAuth.currentUser.uid)
@@ -388,6 +395,32 @@ class RecentSliderState extends State<RecentSlider> {
         .once()
         .then((value) => entries = value.value);
     print(entries);
+  }
+
+  void getJournalText(j) async {
+    ref
+        .child(_firebaseAuth.currentUser.uid)
+        .child("journals")
+        .child(j)
+        .child("journal_entry")
+        .once()
+        .then((DataSnapshot snapshot) {
+      journalText = snapshot.value;
+    });
+    print(journalText);
+  }
+
+  void getJournalScore(j) async {
+    ref
+        .child(_firebaseAuth.currentUser.uid)
+        .child("journals")
+        .child(j)
+        .child("score")
+        .once()
+        .then((DataSnapshot snapshot) {
+      journalScore = snapshot.value;
+    });
+    print(journalScore);
   }
 
   // this is for formatting the date of each journal entry
@@ -444,12 +477,19 @@ class RecentSliderState extends State<RecentSlider> {
             itemCount: count,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => UserMainPage(),
-                  ),
-                ),
+                onTap: () async {
+                  getJournalText(entries.keys.elementAt(index));
+                  getJournalScore(entries.keys.elementAt(index));
+                  await new Future.delayed(const Duration(seconds: 1));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => JournalEntryViewer(
+                          fullEntryTxt: journalText,
+                          sentimentScore: journalScore * 1.0),
+                    ),
+                  );
+                },
                 child: Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Column(
